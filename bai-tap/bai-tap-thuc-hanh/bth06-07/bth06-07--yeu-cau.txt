@@ -1,0 +1,16 @@
+Yêu cầu:
+
+01. Thiết lập roaming profiles, mandatory profile users domain
+https://youtu.be/IrrPFGNAmck
+
+02. Script logon - logoff
+https://youtu.be/oibiGskkUwA
+
+03. Deny App - Cấm sử dụng, thực thi phầm mềm dùng GPO
+https://youtu.be/_RDGhmjV7iU
+
+04. Cài đặt, cấu hình dịch vụ DHCP server
+https://youtu.be/hoqJl1hVBRs
+
+05. Thiết lập cấu hình FTP
+https://youtu.be/kXgeDWci3cE

@@ -1,0 +1,16 @@
+Yêu cầu
+
+01. Nâng cấp máy chủ miền (Domain Controller), kết nối máy vào domain & Share & NTFS Permissions
+https://youtu.be/7AJkphgpkSY
+
+02. Thiết lập Home Folder - Offline files Windows server, user Domains
+https://youtu.be/WtGryyxNjE8
+
+03. Domain Controller promotion
+https://www.youtube.com/watch?v=0QdzHs-M9Ss
+
+04. Share & NTFS permission
+https://www.youtube.com/watch?v=7AJkphgpkSY
+
+05. Home Folder
+https://www.youtube.com/watch?v=WtGryyxNjE8

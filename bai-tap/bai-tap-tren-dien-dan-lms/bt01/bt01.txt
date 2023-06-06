@@ -1,0 +1,13 @@
+Câu 1: Trình bày cách cấu hình ở máy chủ DC để cho phép người quản trị miền có thể thiết lập dùng mật khẩu đơn giản cho tất cả user miền và mật khẩu tối thiểu cần 1 kí tự?
+
+Câu 2: Trình bày quá trình thực hiện cấu hình, thiết lập Home folder cho Domain user. Cho ví dụ? Mục đích sử dụng home folder là gì?
+
+Câu 3: Trình bày quá trình thực hiện cấu hình, thiết lập Offline files cho Domain user. Cho ví dụ? Tác dụng của offline files?
+
+Câu 4: Trình bày quá trình thực hiện cấu hình, thiết lập Roaming & Mandatory cho Domain user. Cho ví dụ? Trường hợp nào chúng ta sử dụng roaming hay Mandatory profiles?
+
+------------------------------------------------------------------------------------
+
+Phần thiết lập permission cho các lab Home, Offline files, Roaming, Mandatory các em còn thiết lập tùy ý, các em nhớ giải thích & cẩn thận khi thiết lập permission. Câu hỏi về Mandatory profile một số nhóm trả lời chưa đầy đủ, thầy sẽ sửa trong buổi học chiều nay, các em nhớ cập nhật, bổ sung khi làm bài nếu có.
+
+Những nội dung các em nên lưu ý thay đổi khi viết như " tích vào share this folder" => Click chọn ; "kích ok " tương tự ; "Ngay user profile" => Tab : Những từ các em dùng không nên dùng trong văn viết, vì vậy khi làm bài thi nên sửa lại viết cho đúng và phù hợp hơn.

@@ -1,0 +1,58 @@
+Câu 01: RAID là gì? Phân biệt các loại RAID 0, RAID 1, RAID 5, RAID 6, RAID 01, RAID 10?
+
+Câu 02: AD (Active Directory) là gì? Nêu các chức năng của Active Directory? Phân biệt sự khác nhau giữa tài khoản người dùng cục bộ và tài khoản người dùng miền?
+
+Câu 03: Trình bày quá trình thiết lập cấu hình Web server web1.ou.edu.vn, web2.ou.edu.vn. Yêu cầu: web1.ou.edu.vn chạy port 8080, web2.ou.edu.vn sử dụng host header name chạy port 9005?
+
+Câu 04: Software Restriction policies là gì ? Cho ví dụ triển khai minh họa? Trình bày dạng triển khai phần mềm (Software Deployment) sử dụng chính sách nhóm? Cho ví dụ minh họa?
+
+Câu 05: FTP là gì ? Trình bày thiết lập FTP site sử dụng port 5000 chỉ cho các user u1 có quyền đọc, u2 có quyền ghi? Với FTP site port 5001 u1,u2 đều có quyền ghi? Minh họa quá trình thiết lập FTP isolated áp dụng trong hê thống miền sử dụng Active Directory?
+
+Câu 06: Trình bày các quyền NTFS permission, special permission áp dụng cho File và Folder trên Windows Server?
+
+Câu 07: Trình bày các thiết lập quyền cho 2 dạng Share permission, NTFS permission? Minh họa việc kết hợp của 2 loại permission trên và cho biết quyền nào sẽ được áp dụng ở mỗi trường hợp, giải thích?
+
+Câu 08: Trình bày các bước thiết lập địa chỉ IP động cho máy trạm khi kết nối vào hệ thống mạng có máy chủ DHCP? Giải thích các thông số cấu hình mà máy client nhận được từ DHCP Server?
+
+Câu 09: Email server là gì? Trình bày quá trình thiết lập, cấu hình email server ở 2 sites mail.ou.org & mail.ou.info để người dùng ở các sites trên có thể thực hiện việc gửi nhận email qua lại với nhau?
+
+Câu 10: DFS là gì? Hãy trình bày quá trình thiết lập cấu hình hệ thống DFS. Cho ví dụ?
+
+-------------------------------------------------------------------------------------
+
+Câu 01: Các em lưu ý thể hiện các ý: Số lượng ổ đĩa cần sử dụng, dung lượng, hoạt động, ưu điểm, nhược điểm, ứng dụng trong trương hợp nào?
+
+Câu 02: Phần này chỉ là lý thuyết, hiểu thì sẽ nói được, các em tham khảo các ý sau:
++ Dịch vụ thư mục
++ Quản lý các đối tượng thuộc miền
+
+*Chức năng:
+- Lưu trữ.
+- Chứng thực, quản lý đăng nhập.
+- Quản lý tài nguyên miền.
+- Quyền.
+- Subdomain, OU.
+
+*Thành Phần AD:
+Các em tham khảo ý, bổ sung thêm như sau:
++ Cấu trúc AD logic: OU, Domain, Forest
++ Cấu trúc AD vật lý: Sites, Domain controllers
+
+Câu 03: Lưu ý thể hiện thiết lập DNS & host header name
+
+Câu 04: Nếu đề không nói rõ trình bày cả 2 dạng Hash & Path Rule.
+
+Đề yêu cầu dạng nào làm dạng đó (Publish hay Assign), ko yêu cầu nêu cả 2. Triển khai phần mềm nhớ thể hiện share thư mục chứa phần mềm, cấp quyền Read cho domain users, thể hiện cấu hình đường dẫn đến phần mềm \\Server\FolderShare\*.msi.
+Thể hiện đầy đủ các bước
+
+Câu 05: Minh họa theo lab, nhớ thể hiện đầy đủ các bước
+
+Câu 06: Thể hiện từng permission với folder & file, nên lập bảng và ghi nội dung cho file & folder ở 2 cột
+
+Câu 07: Minh họa cho ví dụ giải thích kết quả, nên lập bảng như tài liệu & thầy đã giải thích, hướng dẫn
+
+Câu 08: Lưu ý câu 8 là yêu cầu thể hiện thao tác thiết lập IP động cho máy tính=: cấu hình card mạng (không phải là quá trình giao tiếp giữa client & server)
+
+Câu 09: Lưu ý tạo MX record DNS ở 2 site, cấu hình email ở 2 sites
+
+Câu 10: Ví dụ, minh họa & thể hiện theo lab nếu không yêu cầu cụ thể, thực hiện theo yêu cầu nếu đề yêu cầu cụ thể.

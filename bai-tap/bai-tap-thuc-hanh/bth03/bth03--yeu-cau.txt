@@ -1,0 +1,10 @@
+﻿Yêu cầu
+
+01. Thiết lập Home Folder - Offline files Windows server, user Domains
+https://youtu.be/WtGryyxNjE8
+
+02. Thiết lập roaming profiles - Thiết lập Roaming Profiles cho user 311
+https://youtu.be/IrrPFGNAmck?t=363
+
+Lưu ý:
+Cần tạo & share thư mục Profiles thiết lập cho Domain User share permission quyền Full & NTFS permission quyền modify.

@@ -1,0 +1,60 @@
+Câu 1> Trình bày cách cấu hình ở máy chủ DC để cho phép người quản trị miền có thể thiết lập dùng mật khẩu đơn giản cho tất cả user miền và mật khẩu tối thiểu cần 1 kí tự ?
+
+Start → Administrative Tools → Group Policy Management → Domains → Chọn domains → Group Policy Objects → Chuột phải vào “Default Domain Policy” chọn “Edit” → Computer Configuration → Policies → Windows Settings → Security Settings → Account Policies → Password Policy → Minimum Password Length → 1 characters → OK
+
+
+Câu 2> Trình bày quá trình thực hiện cấu hình, thiết lập Home folder cho Domain user. Cho ví dụ ? Mục đích sử dụng home folder là gì ?
+-Thiết lập Home folder:
++ Tạo và chia sẻ một thư mục lưu tất cả home folders trên server
++ Gán thuộc tính (NTFS): Administrators -> Full control
++ Gán thuộc tính (shared): Domain users -> Full control
++ Cung cấp đường dẫn trong Profile Tab dùng UNC name
+VD: Users là share_name
+\\server_name\Users\%username%
+-Mục đích sử dụng Home folder:
++ Lưu thông tin cá nhân của user
++ Là thư mục mặc định của một số phần mềm
++Có thể tạo trên máy Client hay tạo tập trung tại server
++ Khi tạo trên sever:
+User có thể truy xuất từ máy Cilent bất kỳ
+Quản lý tập trung -> dễ lưu trữ, quản lý
+
+Câu 3> Trình bày quá trình thực hiện cấu hình, thiết lập Offline files cho Domain user. Cho ví dụ ? Tác dụng của offline files ?
+- Quá trình thực hiện cấu hình
+Bước 00: Đảm bảo 2 máy đang cùng chung một mạng cục bộ và có thể ping cho nhau.
+Bước 01: Tạo thư mục “Offline files” ở máy Windows 2008.
+Bước 02: Nhấn chuột phải vào thư mục “Offline files” chọn Properties.
+Bước 03: Chuyển qua tab Sharing chọn Advanced Sharing.
+Bước 04: Tích vào Share this folder. Trong phần Settings nhấn vào Permissons.
+Bước 05: Xóa “Everyone” ra khỏi Share Permissons, thay bằng Domain User, các Group hay User mong muốn. Thêm quyền Change hoặc Full Control tùy theo nhu cầu.
+Bước 06: Chuyển qua tab Security, chọn Advanced để cắt quyền kế thừa từ thư mực gốc.
+Bước 07: Trong tab Permissions của Advanced Security Settings, chọn Edit. Bỏ chọn “Include inheritable permissions from this object's parent” và chọn Copy để giữ lại các quyền hiện tại.
+Bước 08: Xóa “Users”, thay bằng Domain User, các Group hay User mong muốn. Thêm quyền Modify hoặc Full control tùy theo nhu cầu.
+Bước 09: Chuyển sang một máy khác (Ví dụ: máy Windows XP), đăng nhập vào tài khoản user đã được cấp quyền truy cập vào thư mục “Offline files”.
+Bước 10: Vào Windows Explorer, nhập địa chỉ IP hoặc tên của máy Windows 2008 vào thanh địa chỉ sẽ thấy xuất hiện các folder, tập tin được chia sẻ.
+Bước 11: Nhấn chuột phải vào thư mục “Offline files” và chọn Make Available Offline. Một hộp thoại hiện ra ta chọn Next, tích chọn “Automatic synchronize the offline files…” rồi chọn Next, ở hộp thoại
+kế tiếp, ta có thể tạo shortcut để truy cập nhanh bằng cách tích chọn “Create a shortcut to the Offline Files folder on my desktop” sau đó chọn Finish và đợi quá trình đồng bộ hoàn thành.
+
+Ví dụ:
+Chúng ta kết nối đến một mạng (chẳng hạn như quán cà phê), chúng ta tạo một copy offline cho các file công việc của mình. Nếu mạng ở quán không ổn định hoặc bị mất, chúng ta có thể hủy kết nối với mạng, chỉnh sửa các file đó offline và đồng bộ chúng trở lại khi có kết nối với cùng mạng đó.
+
+Tác dụng của offline files:
+Cho phép truy cập vào các file được lưu trên mạng của mình trong cả những thời điểm mạng hoặc các file không có sẵn. Tính năng này cho phép chọn các file hay các thư mục nào mà ta muốn có sẵn khi offline, sau đó nó sẽ tạo các copy nội bộ trên máy tính. Các copy này được gọi là các offline file và có thể được truy cập bất cứ thời điểm nào. Khi bạn kết nối trở lại với mạng của mình, Windows sẽ tự động đồng bộ các file offline này với location nơi chúng được lưu trên mạng.
+
+Câu 4> Trình bày quá trình thực hiện cấu hình, thiết lập Roaming & Mandatory cho Domain user. Cho ví dụ ? Trường hợp nào chúng ta sử dụng roaming hay Mandatory profiles ?
+
+- Roaming
++ Tạo và chia sẻ một thư mục lưu tất cả profile trên server
++ Gán thuộc tính (NTFS):
++ Domain user: Modified
++ Gán thuộc tính (shared):
++ Domain user: Full Control
++ Cung cấp đường dẫn trong Profile Tab dùng UNC name
+Vd: Profiles là share_name
+\\server_name\Profiles\%username%
+- Mandatory profile làm giống như Roaming profile
++ Trong thư mục chứa profile đổi đuôi file ntuser.dat thành ntuser.man
++ File ntuser.dat là một file ẩn, trong Tools → Folder Options chọn “Show hidden files and folder” để hiển thị file và phải bỏ chọn Hide extensions for known file types để hiện phần mở rộng của file.
++ Roaming user profile: Tất cả profile của người dùng được lưu trên máy server, khi người dùng đăng nhập vào Domain dù bằng bất cứ máy nào thì profile của người dùng vẫn được bảo toàn và người dùng có thể cập nhật (chỉnh sửa, thay đổi,..) profile của chính mình và profile được tự động cập nhật lên server khi đăng xuất.
++ Được sử dụng trong trường hợp user sử dụng nhiều máy khác nhau Mandatory profiles: Profile được lưu trên server, người dùng có thể thay đổi profile nhưng sự thay đổi đó chỉ có tác dụng trong session làm việc đó và không được cập nhật lên server khi người dùng đăng xuất.
++ Được sử dụng khi admin không muốn user chỉnh sửa profile.

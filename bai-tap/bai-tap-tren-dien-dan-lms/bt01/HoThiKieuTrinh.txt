@@ -1,0 +1,45 @@
+1/ Trình bày cách cấu hình ở máy chủ DC để cho phép người quản trị miền có thể thiết lập dùng mật khẩu đơn giản cho tất cả user miền và mật khẩu tối thiểu cần 1 kí tự ?
+Start ->Administrative Tools -> Group Policy Management ->Domains ->(chọn domains để thiết lập) -> Group Policy Objects ->Default Domain Policy ->(chuột phải) Edit ->Computer Configuration ->Policies ->Windows Settings ->Security Settings ->Account Policies ->Password Policy -> Minimum Password Length -> 1 characters
+
+2/Trình bày quá trình thực hiện cấu hình, thiết lập Home folder cho Domain user. Cho ví dụ ? Mục đích sử dụng home folder là gì ?
+_ Tạo Home folder:
++ Tạo và chia sẻ một thư mục lưu tất cả home folders trên server
++ Gán thuộc tính (NTFS): administrator : Full control
++ Gán thuộc tính (shared): Domain users: Full control
++ Cung cấp đường dẫn trong Profile Tab dùng UNC name (Home folder)
+VD: \\server_name\folder_name\%username%
+_ Mục đích:
++ Lưu thông tin cá nhân của user
++ Là thư mục mặc định của một số phần mềm
++ Có thể tạo trên máy Cilent hay tạo tập trung tại server
++ Tạo trên sever: User có thể truy xuất từ máy Cilent bất kỳ, quản lý tập trung -> dễ lưu trữ, quản lý
+
+3/Trình bày quá trình thực hiện cấu hình, thiết lập Offline files cho Domain user. Cho ví dụ ? Tác dụng của offline files ?
+_ Tạo Offline files:
++ Tạo và chia sẻ một thư mục lưu tất cả Ofline files trên server
++ Gán thuộc tính (NTFS): Domain users: Full control
++ Gán thuộc tính (shared): Domain users: Full control
+VD:
++ Chọn files cần thiết lập -> Chọn Make Available Offline
++ Quan bên cilent chọn files cần thiết lập -> Chọn Make Available Offline
+_ Tác dụng:
++ Cho phép truy cập tài nguyên trên mạng ở thời điểm mạng không hoạt động hoặc tài nguyên không khả dụng
++ Cho phép chọn các tập tin hay các thư mục nào muốn khả dụng khi offline
++ Tạo file nội bộ trên máy tính gọi là các offline file có thể được truy cập mọi lúc
++ Tác dụng khi user phải di chuyển ở nhiều địa điểm và nhiều mạng khác nhau
++ Kết nối đến mạng khác nhau xử lí offline nội dung cho các tập tin công việc
++ Chỉnh sửa các tập tin công việc và đồng thời bộ chúng trở lại khi có kết nối lại
+
+4/Trình bày quá trình thực hiện cấu hình, thiết lập Roaming & Mandatory cho Domain user. Cho ví dụ ? Trường hợp nào chúng ta sử dụng roaming hay Mandatory profiles ?
+_Thiết lập Roaming:
++ Tạo và chia sẻ một thư mục lưu tất cả Profile trên server
++ Gán thuộc tính (NTFS): Domain users: Modified
++ Gán thuộc tính (shared): Domain users: Full control
++ Cung cấp đường dẫn trong Profile Tab dùng UNC name (User profiles)
+VD: \\server_name\folder_name\%username%
+__Thiết lập Mandatory:
++ Tạo folder có tên user giống thuộc tính của roaming
++ Copy tất cả files của roaming user bỏ qua bên user muốn Mandatory
++ Đổi đuôi file
+VD: files ntuser.ini thành ntuser.man
+_ Roaming profiles cho phép users sử dụng các settings trên desktop của mình từ bất kì máy nào.Mandatory cũng chính là Roaming nhưng sự khác biệt là Roaming cho phép bạn thay đổi các settings trên desktop, với Mandatory mọi settings không thể thay đổi, có nghĩa rằng nó cho phép bạn giữ nguyên hình dạng lúc bạn đầu bạn đã set, trong trường hợp có ai sử dụng và chỉnh sửa lại desktop của bạn thì các settings cũ sẽ được giữ nguyên.

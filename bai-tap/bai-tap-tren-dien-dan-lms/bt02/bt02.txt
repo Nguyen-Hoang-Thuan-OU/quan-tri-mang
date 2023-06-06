@@ -1,0 +1,37 @@
+Câu 1: Nêu các thiết bị mạng cơ bản (NIC, Repeater, Hub, Bridge, Switch, Router). Chức năng, đặc điểm, tên thiết bị và tầng hoạt động?
+
+Câu 2: Trình bày nguyên tắc đánh địa chỉ IP cho mạng máy tính. Phân biệt sự khác nhau giữa địa chỉ chung (Public address) và địa chỉ riêng (Private address)?
+
+Câu 3: Trình bày các bước cần phải thực hiện để xây dựng một mạng máy tính. Trong các bước trên bước nào quan trọng nhất? Vì sao?
+
+Câu 4: Nêu định nghĩa tài khoản nhóm và qui tắc gia nhập nhóm trên miền. Vẽ sơ đồ qui tắc gia nhập nhóm trên miền.
+
+------------------------------------------------------------------------------------------
+
+Câu 1: Nội dung như thầy đã nhắc lại, giải thích ở lớp. Xem lại tài liệu mạng máy tính và các tài liệu khác.
+
+Câu 2: Các em tham khảo các gợi ý:
+Tham khảo phần trả lời của các nhóm & ôn tập lại.
+
+Câu 3: Trình bày như tài liệu & các phân tích, triển khai, giải thích của thầy ở lớp, nhớ triển khai các ý không chỉ ghi đề mục.
+
+Bước quan trọng trong quá trình xây dựng các em tham khảo các ý:
+
+Bước thiết kế giải pháp là quan trọng nhất vì liên quan các vấn đề thực tế:
++Kinh phí dành cho hệ thống mạng;
++Công nghệ sử dụng
++Nhu cầu, thói quen công nghệ người dùng
++Yêu cầu kĩ thuật, tính ổn định, hiêu năng sử dụng, băng thông của hệ thống
+mạng;
++Ràng buộc bản quyền, pháp lý.
+
+Câu 4: Một số ý tham khảo
++ Tài khoản nhóm (group account)
+Tham khảo phần trả lời của nhóm bạn Thuận, Quân...
+
+Qui tắc gia nhập nhóm:
+
+Tất cả các nhóm Domain local, Global, Universal có thể thêm vào nhóm Computer Local Group.
+Tất cả các nhóm Domain local, Global, Universal có thể thêm vào chính loại nhóm của nó.
+Nhóm Global có thể  thêm vào nhóm Universal.
+Nhóm Global và Universal có thể thêm vào trong nhóm Domain local.

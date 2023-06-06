@@ -1,0 +1,7 @@
+Yêu cầu: 
+
+01. Thiết lập roaming profiles, mandatory profile users domain
+https://youtu.be/IrrPFGNAmck
+
+02. Triển khai chính sách GPO cho domain users - Triển khai cài đặt phần mềm sử dụng GPO (Group Policy Object on Domain Controller Server - Home Folder Quotas)
+https://youtu.be/xF7ggusO0IU

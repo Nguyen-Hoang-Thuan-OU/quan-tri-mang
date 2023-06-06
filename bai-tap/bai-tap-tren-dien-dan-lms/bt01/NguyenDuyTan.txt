@@ -1,0 +1,54 @@
+~Câu 1: Để thiết lập dùng mật khẩu đơn giản
+Vào Start ->Administrative Tools -> Group Policy Management
+->Domains -> Group Policy Objects ->Default Domain Policy -> (right Click)Edit -> Xuất hiện hộp GPM Editor
+Computer Configuration ->Policies ->Windows Settings ->Security Settings -> Account Policies ->Password Policy -> Minimum Password Length -> 1 characters
+
+~Câu 2: Trình bày quá trình thực hiện cấu hình Home Folder và mục đích.
+_ Tạo Home folder:
++ Trên Server tạo Thư mục
+Share và NTFS permission tùy trường hợp cho thư mục đó cho user
++ Vào Active Directory Users and Computers
+-> Chọn OU -> chọn tab Profile trong Properties của user or Group muốn
+tạo Home Folder -> Nhìn mục Home folder tick vào Connect
+cho nó connect đến Tên máy Server\ tên thư mục tạo Home folder \ user
+VD: \\server\folder\%username%
+_ Mục đích:
++ Dữ liệu của user sẽ được lưu hết lại trong Home Folder
++ Muốn cho User sử dụng ứng dụng hay dữ liệu chỉ cần copy vào
+User đó trong Home Folder.
++ User có thể truy cập từ máy Cilent bất kỳ.
++ Dể dàng quản lý dữ liệu của các user.
+
+~Câu 3: Trình bày quá trình thực hiện thiết lập Offline files, tác dụng.
+_ Tạo Offline files:
++ Trên Server tạo Thư mục
+Share và NTFS permission tùy trường hợp cho thư mục đó cho các user
++ Đăng nhập vào User vào control panel hoặc cách khác mở Offline file lên
+Chọn Make Available Offline
+_ Tác dụng:
++ Tác dụng khi user phải di chuyển ở nhiều địa điểm và nhiều mạng khác nhau
++ Chọn file or folder nào muốn sử dụng Offline files lúc đó nó sẽ được download
+xuống máy Client, trường hợp mất mạng thì vẫn có thể dùng và chỉnh sửa, nội dung
+sau khi được chỉnh sửa sẽ được đồng bộ hóa lên lại Server khi có kết nối mạng trở lại.
+
+~Câu 4: Trình bày quá trình thực hiện cấu hình, thiết lập Roaming & Mandatory, trường hợp sử dụng.
+_Thiết lập Roaming:
++ Trên Server tạo Thư mục
+Share và NTFS permission tùy trường hợp cho thư mục đó cho các user
++ Vào Active Directory Users and Computers
+-> Chọn OU -> chọn tab Profile trong Properties của user or Group muốn
+tạo Home Folder -> Nhìn mục User Profile tick vào Profile path
+và gán đường dẫn cho nó.
+VD: \\server_name\folder_name\%username%
+_Thiết lập Mandatory:
++ Tương tự Roaming
++ Các file trong User Roaming sẽ bị ẩn nên đầu tiên cài đặt cho hiển thị
+file ẩn và cho hiển thị định dạng file để đổi đuôi file.
++ Đổi files ntuser.ini thành ntuser.man | khi đó từ User Roaming sẽ thành User Mandatory.
+
+_ Trường hợp sử dụng hai loại User Profile trên là:
++ Nếu muốn cho User tùy ý sử dụng và lưu lại các thay đổi mới thì cài Roaming Profile
+lúc này khi User đăng nhập vào thì Dữ liệu của User sẽ chuyển từ Server về Client
+Mọi thay đổi của User khi log out thì được upload hết lại Server.
++ Còn với Mandatory dữ liệu User chỉ đưa từ Server về Client, phía Client sẽ không
+upload ngược về Server nên mọi thay đổi của User không được Server lưu lại.

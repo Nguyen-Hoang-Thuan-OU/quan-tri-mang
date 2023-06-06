@@ -1,0 +1,16 @@
+Yêu cầu:
+
+01. Thiết lập roaming profiles, mandatory profile users domain
+https://youtu.be/IrrPFGNAmck
+
+02. Deny App - Cấm sử dụng, thực thi phầm mềm dùng GPO
+https://youtu.be/_RDGhmjV7iU
+
+03. Thiết lập FTP Site cách ly user Active Directory
+https://youtu.be/ujw2ufYfEK8
+
+04. Cài đặt, cấu hình DFS server (Distributed File System)
+https://youtu.be/yYZe08Z9yEI
+
+05. Cài đặt Email server - site to site
+https://youtu.be/M_EkC0RLVHk

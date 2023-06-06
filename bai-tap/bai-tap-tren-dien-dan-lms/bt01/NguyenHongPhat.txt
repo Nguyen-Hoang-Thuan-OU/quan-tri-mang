@@ -1,0 +1,39 @@
+Câu 1> Trình bày cách cấu hình ở máy chủ DC để cho phép người quản trị miền có thể thiết lập dùng mật khẩu đơn giản cho tất cả user miền và mật khẩu tối thiểu cần 1 kí tự ?
+-Để thiết lập mật khẩu đơn giản tối thiểu 1 kí tự cho tất cả user miền cần các bước như sau:
+Truy cập Programs từ Menu Start -> Administrative Tools -> Group Policy Management -> chọn tên domain muốn thiết lập -> chuột phải vào Default Domain Policy -> xuất hiện cửa sổ Group Policy Management Editor -> Computer Configuration -> Policies -> Windows Settings -> Security Settings -> Account Policies -> Password Policy -> hiệu chỉnh Minimum Password Length bằng 1 -> để cập nhập Group Policy bật cửa sổ Run -> nhập lệnh “gpupdate /force”.
+
+Câu 2> Trình bày quá trình thực hiện cấu hình, thiết lập Home folder cho Domain user. Cho ví dụ? Mục đích sử dụng home folder là gì?
+-Để thiết lập cấu hình Home Folder cho các Domain user:
+Tạo thư mục HOME trên ổ đĩa của máy server domain -> thiết lập thuộc tính shared của thư mục -> remove Everyone -> click Add -> Domain Users -> chọn Full control.
+Thiết lập thuộc thính Security(NTFS) của thư mục -> loại bỏ nhóm Users -> tại phần Permission for Users -> Advanced -> Edit -> chọn bỏ Indude inheritable permission from this object’s parents -> Copy -> Apply -> chọn nhóm Users tại phần Group or Users -> Remove -> sau khi loại bỏ chọn Add -> Domain Users -> Full control.
+Truy cập Active Directory Users and Computers -> chuột phải trên các Users -> chọn Profiles -> chọn Connect -> bổ sung đường dẫn theo cú pháp \\server_name\folder_name \%user_name% -> OK.
+Mục đích sử dụng Home folder:
++tiết kiệm thời gian,chi phí
++mỗi user đều có nhu cầu lưu các thông tin lên thư mục Home
++một số phần mềm mặc định lưu trữ dữ liệu tại đây
++giúp server quản lý tập trung.
+
+Câu 3> Trình bày quá trình thực hiện cấu hình, thiết lập Offline files cho Domain user. Cho ví dụ? Tác dụng của offline files?
+Thực hiện cấu hình offline files cho domain users qua các bước như sau:
+Tạo thư mục cần chức năng offline files -> thiết lập thuộc tính Shared -> loại bỏ nhóm Everyone mặc định -> Add -> Domain users -> Full control -> Thiết lập thuộc thính Security(NTFS) của thư mục -> loại bỏ nhóm Users -> tại phần Permission for Users -> Advanced -> Edit -> chọn bỏ Indude inheritable permission from this object’s parents -> Copy -> Apply -> chọn nhóm Users tại phần Group or Users -> Remove -> sau khi loại bỏ chọn Add -> Domain Users -> Full control.
+Đăng nhập vào 1 máy client trong domain -> chuột phải trên thư mục đã tạo -> Make Available Offline -> tương tự cho các máy client khác trong domain
+Tác dụng của Offline files:
++ Offline Files là một tính năng cho phép truy cập vào các file được lưu trên mạng ngay trong cả những thời điểm mạng hoặc các file không có sẵn.
++Cho phép chọn các file hay các thư mục muốn có sẵn khi offline, sau đó nó sẽ tạo các copy nội bộ trên máy tính cục bộ. Các copy này được gọi là các offline file và có thể được truy cập bất cứ thời điểm nào. +Tự động đồng bộ các file offline này với location nơi chúng được lưu trên mạng.
++Cho phép sử dụng ở nhiều địa điểm và nhiều mạng:
++Offline Files cung cấp khả năng di động sự bảo vệ khi mất kết nối mạng và nâng hiệu quả khi làm việc trên các kết nối chậm.
+
+Câu 4: Trình bày quá trình thực hiện cấu hình, thiết lập Roaming & Mandatory cho Domain user. Cho ví dụ ? Trường hợp nào chúng ta sử dụng roaming hay Mandatory profiles ?
+Thiết lập Roaming Profiles:
+• Tạo và thiết lập chia sẻ một thư mục lưu tất cả Profile trên server
+• NTFS: Domain Users: Modified
+• Sharing: Domain Users: Full Controll
+• Cung cấp đường dẫn trong Profile Tab
+• Vd:\\server_name\folder_name\%username%
+Thiết lập Mandatory profiles:
+• Tạo và thiết lập chia sẻ một thư mục lưu tất cả Profile trên server
+• NTFS: Domain Users: Full Controll
+• Sharing: Domain Users: Full Controll
+• Qua máy client , vào system Properties , vào User Profiles chọn vào user đang Roaming, ở ô copy profile to ta dán đường dẫn Sharing của file Mandatory, sau đó nhập username và password của user đang Roaming. Đổi đuôi File ntuser.dat thành .man
+Trường hợp nào chúng ta sử dụng roaming hay Mandatory profiles:
+Roaming profiles: roaming profile cho phép users sử dụng các settings trên desktop của mình từ bất kì máy nào. Còn Mandatory mọi settings không thể thay đổi, cho phép bạn giữ nguyên hình dạng lúc bạn đầu bạn đã set, trong trường hợp có ai sử dụng và chỉnh sửa lại desktop của bạn thì các settings củ sẽ được giữ nguyên.

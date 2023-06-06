@@ -1,0 +1,87 @@
+1.     Chọn Group Policy Management
+
+Click phải vào Default Domain Policy khi bấm vào dấu cộng của mục Forest -> Domain -> miền được cấu hình.
+
+Chọn Edit.
+
+Sổ cửa sổ của mục Policy trên phần Computer Configuration, sổ tiếp mục Windows Setting, sổ tiếp mục Security, sổ tiếp phần Account Policy -> Chọn Password Policy.
+
+Cấu hình mục Minimum password length, Password must meet complexity requirement theo yêu cầu.
+
+ 
+
+2.     Chọn Active Directory Users and Computers
+
+Tạo thư mục Home trên ổ đĩa “C:”, cấu hình NTFS quyền Administrator = full control, Share folder quyền Domain user : full control.
+
+Chọn mục User trong miền muốn cấu hình, chọn vào mục OUs nào mình muốn cấu hình Home Folder.
+
+Nếu nhiều user thì chúng ta bôi đen các user trong OU đó chọn properties rồi chọn tab profile trong đó có mục Home Folder. Click chọn Home Folder chọn “ connect to: “ sau đó nhập đường dẫn (ví dụ : \\ten_may\Home\%username% ) thì chúng ta sẽ cấu hình đường dẫn cho nhiều user cùng lúc.
+
+-Mục đích :
+
+·        Lưu thông tin cá nhân,thư mục mặc định cho một số phần mềm, có thể tạo trên client hay tập trung tại server
+
+·        ưu điểm khi tạo trên sever:
+
+      o   User có thể truy xuất từ máy Client bất kỳ,
+
+      o   quản lý tập trung -> dễ lưu trữ, quản lý
+
+ 
+
+3.     Tạo thư mục OfflineFiles trên ổ D:
+
+NTFS : domain user và bỏ users, thêm các user của miền vào cho full control.
+
+Sharing : domain user và bỏ users, thêm các user của miền vào cho full control.
+
+Qua bên client vào gõ trên thanh search bar của my computer “\\ten_may_server”, click phải file OfflineFiles vừa tạo chọn Make available offline. Hiện lên cửa sổ cài đặt bấm next -> Chọn Automatically synchronize the offline files  when I log in/off my computer -> next -> chọn create shortcut.
+
+Mục đích :
+
+·        Cho phép truy cập tài nguyên trên mạng ở thời điểm mạng không hoạt động hoặc tài nguyên không khả dụng.
+
+·        Cho phép chọn các tập tin hay các thư mục nào muốn khả dụng khi offline.
+
+·        Tạo file nội bộ trên máy tính gọi là các offline file có thể được truy cập mọi lúc.
+
+·        Tác dụng khi user phải di chuyển ở nhiều địa điểm và nhiều mạng khác nhau.
+
+·        Kết nối đến mạng khác nhau xử lý offline nội dung cho các tập tin công việc.
+
+·        Chỉnh sửa các tập tin công việc và đồng bộ chúng trở lại khi có kết nối lại.
+
+4.
+
+-Roaming Profiles:
+
+Tạo và chia sẻ 1 thư mục Profiles lưu tất cả profile trên server.
+
+NTFS : domain user : Modifiled
+
+Sharing domain user :  Full Control
+
+Cung cấp đường dẫn trong profile tab dùng đường dẫn tới file profile cho mục Profile path
+
+Ví dụ : ”\\ten_may\Profiles\%username%”
+
+Bên client thì ta log off rồi log in để cấu hình (kéo thả giao diện, thêm file,… trên mục My document). Qua client khác để log in với user đã cấu hình.
+
+Mục đích : Khi muốn cho user có thể cập nhật thay đổi và giúp cho user đó di chuyển nhiều xài nhiều máy trong mạng mà vẫn giữ được cấu hình của riêng mình.
+
+ 
+
+-Mandatory Profiles:
+
+Tạo thư mục tên tương ứng với :
+
+NTFS : domain user = full control
+
+Sharing : everyone = full control
+
+Qua client đăng nhập với tài khoản local trên máy, vào System Properties -> user profiles -> user đang roaming -> chọn copy to -> điền vào đường dẫn sharing của file MandatoryProfiles mới tạo -> nhập mật khẩu của user đó -> Vào thư mục MandatoryProfiles chọn show những hidden files -> sửa file ntuser.dat thành ntuser.man ->
+
+Vào Profile chọn file user đang cấu hình rồi xoá hết các file trong tệp và thay thế chúng bằng các file trong MandatoryProfiles .
+
+Mục đích : Khi không muốn cho bất kỳ ai ngoại trừ administrator thay đổi cấu hình ban đầu của mình.

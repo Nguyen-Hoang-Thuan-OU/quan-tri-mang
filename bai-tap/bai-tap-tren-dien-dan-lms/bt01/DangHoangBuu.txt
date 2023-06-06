@@ -1,0 +1,217 @@
+Câu 1: Trình bày cách cấu hình ở máy chủ DC để cho phép người quản trị miền có thể thiết
+
+lập dùng mật khẩu đơn giản cho tất cả user miền và mật khẩu tối thiểu cần 1 kí tự.
+
+1. Tạo Domain Controller với tên TESTXX.PRO
+
+2. Vào Start chọn Program -> Administrative Tools -> Group Policy Managements.
+
+3. Trong Group Policy Managements chọn Forest: TESTXX.PRO -> Domains ->
+
+TESTXX.PRO -> Nhấp chuột phải vào Default Domain Policy chọn Edit…
+
+4. Chọn Computer Configuration -> Windows Settings -> Security Settings -> Account
+
+Policies -> Password Policy.
+
+5. Trong Password Policy chọn Minimun password length chỉnh xuống 1 characters,
+
+xong Apply.
+
+6. Chọn Password must meet complexity requirements, chỉnh Define this policy setting
+
+thành Disabled.
+
+7. Vào Run gõ gpupdate/force.
+
+Câu 2: Các bước tạo Home Folder
+
+·       B1: Sau khi đã nâng cấp domain ->tạo và.
+
+·       B2: Share Home folder đó với các thiết lập (NTFS: Administrator và các user trong domain FullControl,
+
+Shared: Domain user: FullControl/ Modify )
+
+·       B3: Cung cấp đường dẫn trong Profile Tab dùng UNC Name.
+
+ 
+
+Ví dụ:
+
+Máy Windows Server 2008 ( đã nâng cấp domain): Server 1/ tên máy S00
+
+Tạo OU1 có 2 user là u1 và u2
+
+Vào ổ đĩa D của Server 1 tạo 1 folder tên là Home
+
+Share folder Home với Permission là DomainUsers với quyền FullControl và NTFS: Administrator quyền
+
+FullControl , u1 và u2 được thêm vào với thiết lập quyền FullControl
+
+Sau khi thiết lập Home folder, ta cung cấp đường dẫn cho từng user. Bấm Profile Tab của u1 tick
+
+Connect trong khung Home folder : \\S00\Home\u1 và u2 : \\S00\Home\u2
+
+ 
+
+Mục đích sử dụng HOME FOLDER:  cho phép tạo ra nơi lưu trữ dữ liệu của user trên File Server,
+
+giúp quản lí tập trung, các user có thể truy xuất từ máy Client bất kì
+
+Câu 3 Trình bày quá trình thực hiện cấu hình, thiết lập Offline files cho Domain user. Cho ví dụ
+
+? Tác dụng của offline files ?
+
+·       Quá trình thực hiện cấu hình, thiết lập Offline Files cho Domain user:
+
+_ Tạo folder chứa các offline files trên server.
+
+_ Thiết lập Share Permission cho folder: chỉ cho phép Domain user được Full Control.
+
+_ Thiết lập NTFS Permission cho folder: cho phép Domain user quyền được Modified hoặc Full Control.
+
+_ Vào tài khoản user của domain, dùng đường dẫn “\\server_name” để thấy folder chứa Offline file. Bật thuộc thuộc tính “Make available offline” của folder đó.
+
+·       2. Ví dụ:
+
+_ Thiết lập offline file cho u1, u2 (domain user) với máy tính có tên máy ABC đã được nâng cấp
+
+domain.
+
++ Tạo 1 folder tên Offline Data chứa các offline files.
+
++ Thiết lập Share Permission của folder chỉ cho phép u1, u2 được Full Control.
+
++ Thiết lập NTFS Permission của folder cho phép u1, u2 được Full Control hoặc Modified.
+
++ Lần lượt vào tài khoản u1, u2, dùng đường dẫn “\\ABC” để thấy folder chứa Offline file, bật
+
+thuộc thuộc tính “Make available offline” của folder đó.
+
+·       3. Tác dụng của offline files:
+
+_ Cho phép truy cập vào các tài nguyên trên mạng ở thời điểm mạng không hoạt động hoặc user phải di chuyển nhiều nơi và nhiều mạng khác nhau.
+
+_ Tự động cập nhật dữ liệu khi kết nối mạng.
+
+Câu 4: Quá trình thực hiện cấu hình và thiết lập Roaming, Mandatory cho Domain user:
+
+- Đăng nhập vào máy DC với user Administrator.
+
+- Vào Start -> Administrative Tools, chọn Active Directory Users and
+
+Computers.
+
+- Chuột phải lên tên Domain, tạo mới một OU tên là OU41. Trong OU tạo 1
+
+Group và 2 User (ví dụ u411 và u412).
+
+- Vào ổ đĩa D tạo một thư mục mới tên PROFILE.
+
+- Thực hiện Share thư mục PROFILE cho Everyone với quyền Full Control
+
+bằng cách click chuột phải vào thư mục PROFILE, chọn Properties. Trong
+
+hộp thoại Properties chọn tab Sharing, sau đó check vào Share this folder ->
+
+chọn Permission, cấp cho nhóm Everyone có quyền Full Control. Nhấn OK
+
+để kết thúc.
+
+- Sau đó qua tab Security để thực hiện phân quyền NTFS cho thư mục
+
+PROFILE. Nhấn Add và add các user cần roaming vào với Full Control.
+
+- Vào Start -> Administrative Tools -> Active Directory Users and
+
+Computers -> OU41 -> chọn 2 user u411 và u412 -> click chuột phải chọn
+
+Properties.
+
+- Chọn tab Profile, tại Profile path điền vào đường dẫn của thư mục chứa
+
+profile mà user sẽ kết nối đến khi truy xuất tại máy trạm:
+
+\\sever_name\PROFILE\%username%
+
+- Nhấn Apply và OK để cập nhật.
+
+Cho Ví dụ:
+
+Với tên máy DC là S17 có tên Domain là SAMPLE17.ORG
+
+- Đăng nhập vào máy S17 với user Administrator.
+
+- Vào Start -> Administrative Tools, chọn Active Directory Users and
+
+Computers.
+
+- Chuột phải lên SAMPLE17.ORG, tạo mới một OU tên là OU41. Trong
+
+OU tạo 1 Group đặt tên là GroupA và 2 User u411 và u412.
+
+- Vào ổ đĩa D tạo một thư mục mới tên PROFILE.
+
+- Thực hiện Share thư mục PROFILE cho Everyone với quyền Full Control
+
+bằng cách click chuột phải vào thư mục PROFILE, chọn Properties. Trong
+
+hộp thoại Properties chọn tab Sharing, sau đó check vào Share this folder ->
+
+chọn Permission, cấp cho nhóm Everyone có quyền Full Control. Nhấn OK
+
+để kết thúc.
+
+- Sau đó qua tab Security để thực hiện phân quyền NTFS cho thư mục
+
+PROFILE. Nhấn Add và add các user cần roaming vào với Full Control.
+
+- Vào Start -> Administrative Tools -> Active Directory Users and
+
+ 
+
+Computers -> OU41 -> chọn 2 user u411 và u412 -> click chuột phải chọn
+
+Properties.
+
+- Chọn tab Profile, tại Profile path điền vào đường dẫn:
+
+\\S17\PROFILE\%username%
+
+- Nhấn Apply và OK để cập nhật.
+
+ Trường hợp sử dụng Roaming Profiles:
+
+- Tất cả Profile của người dùng được lưu trên máy Server, khi người dùng
+
+đăng nhập vào Domain dù bằng bất cứ máy nào thì profile của người dùng
+
+vẫn được bảo toàn và người dùng có thể cập nhật (chỉnh sửa, thay đổi,...)
+
+profile của chính mình và profile được tự động cập nhật lên Server khi đăng
+
+xuất. VD như chuyển vùng vào mạng quốc tế khi đi ra nước ngoài.
+
+Thiết lập Mandatory Profiles:
+
+Tương tự như Roaming profiles chỉ khác ở chỗ đổi file ntuser.DAT thành ntuser.MAN trong thư mục chứa Profile mẫu. Đối với Mandatory thì chỉ cần tạo 1 profiles duy nhất sau đó assign (gán) cho tấc cả các user.
+
+Ví dụ
+
+Vào Active Directory Users and Computers tạo ra 1 user mới với tên bất kỳ giả sử là “user_mau”.
+
+Dùng máy Client đăng nhập vào user này rồi thay đổi thuộc tính, trình bày bất kỳ trên desktop tùy sở thích (khi đăng nhập xong thóat ra những gì mà bạn đã làm sẽ được lưu lại, thông tin này sẽ làm định dạng mẫu cho những profile sau này).
+
+Logoff ra khỏi User “user_mau” và logon vào lại với User “administrator” của máy Client vừa logoff.+
+
+Trên ổ đĩa C hoặc bất kỳ tạo Folder để lưu profile, giả sử là thư mục profiles, mở tab Securities share Full Permission.
+
+Sau khi logon vào user admin của máy client, click chuột phải trên My Computer –> Advanced –> tại User Profiles chọn Settings –> Chọn Profile vừa tạo–> Chọn Copy to –> hộp thoại hiện ra, tại phần Copy profile to đánh đường dẫn nơi chứa Profile này trên server, giả sử như \\192.168.1.100\profiles\mandatory. Bấm vào nút change rồi đánh vào chữ everyone tại ô “Enter object name to select” ở bên dưới.
+
+ 
+
+Trường hợp thiết lập Mandatory
+
+Với Mandatory mọi settings không thể thay đổi, có nghĩa rằng nó cho phép bạn giữ nguyên hình dạng lúc bạn đầu đã set, trong trường hợp có ai sử dụng và chỉnh sửa lại desktop của bạn thì các settings cũ sẽ được giữ nguyên.
+
+Đảm bảo giữ nguyên các format setting

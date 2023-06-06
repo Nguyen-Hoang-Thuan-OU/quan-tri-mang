@@ -1,0 +1,34 @@
+Câu 1: Trình bày cách cấu hình ở máy chủ DC để cho phép người quản trị miền có thể thiết lập dùng mật khẩu đơn giản cho tất cả user miền và mật khẩu tối thiểu cần 1 kí tự ?
+Start -> Administrative Tools -> Group Policy Management -> Chọn tên domain muốn thiết lập -> Default Domain Policy (Right click) -> Group Policy Management Editor -> Computer Configuration -> Policies -> Windows Settings -> Security Settings -> Account Policies -> Password Policy -> Minimum Password Length
+Tại Minimum Password Length, ta edit thành 1 Cập nhập Group Policy: Nhấn tổ hợp Win+R rồi nhập “gpupdate /force” để cập nhật lại group policy.
+
+Câu 2: Trình bày quá trình thực hiện cấu hình, thiết lập Home folder cho Domain user. Cho ví dụ ? Mục đích sử dụng home folder là gì ?
+- Quá trình thực hiện cấu hình, thiết lập Home folder cho Domain user:
++ Tạo thư mục Home trên ổ đĩa của server domain -> thiết lập Shared -> chọn Remove Everyone -> chọn Add -> Domain Users -> Thiết lập thuộc tính Full Control.
++ Tiếp tục gán thuộc tính Security (NTFS) cho thư mục -> xóa bỏ nhóm Users -> tại mục Permission for Users -> Advanced -> Edit -> bỏ chọn Indude inheritable permission from this object’s parents -> Copy -> Apply -> chọn Users (Users and Computers) -> Remove -> Add -> Domain Users -> Full control.
++ Vào Active Directory Users and Computers -> chuột phải trên các Users -> chọn Profiles -> chọn Connect -> Cung cấp đường dẫn trong Profile Tab theo cú pháp \\server_name\folder_name \%user_name% -> OK. Ví dụ: \\S20\Home\u411
+
+Mục đích sử dụng Home folder:
++ Tạo trên máy Cilent, giúp server quản lý tập trung giúp dễ lưu trữ và quản lý -> Tiết kiệm thời gian và chi phí
++ Giúp lưu các thông tin lên thư mục Home và phần mềm mặc định lưu trữ dữ liệu.
+
+Câu 3: Trình bày quá trình thực hiện cấu hình, thiết lập Offline files cho Domain user. Cho ví dụ ? Tác dụng của offline files ?
+Tạo folder OfflineFiles trên máy server, vào properties của OfflineFiles -> Sharing ->Advance Sharing, tích vào Share this folder sau đó click vào permission -> remove everyone -> add Domain Users tích vào Permission change -> add tất cả users hoặc groups được phép truy cập vào OfflineFiles và tích vào Permission full control.
+Click vào Security -> remove Users ->add Domain Users-> add tất cả users hoặc groups được phép truy cập vào OfflineFiles và tích vào full control
+Đăng nhập vào máy Client và nhấp chuột trái vào OfflineFiles chọn Make Available Offline -> tích vào Automatically Synchronize the Offline files when I log on and log off để tự động đồng bộ file.
+Tác dụng: cho phép truy cập vào file được lưu trên mạng của mình trong cả thời điểm mạng hoặc file không có sắn. Cho phép chọn các file hay các thư mục muốn có sẵn khi offline và tự đồng bộ khi có kết nối lại.
+
+Câu 4: Trình bày quá trình thực hiện cấu hình, thiết lập Roaming & Mandatory cho Domain user. Cho ví dụ? Trường hợp nào chúng ta sử dụng Roaming hay Mandatory profiles?
+Thiết lập Roaming profile:
++ Tạo và chia sẻ một folder lưu tất cả Profile trên server
++ Gán thuộc tính (NTFS): Xoá tất cả các user trong Sharing, thêm Domain users và Administrator và gán thuộc tính Modified cho 2 user trên.
++ Gán thuộc tính (shared): Xoá Everyone trong Sharing, thêm Domain users với quyền Full control. + Cung cấp đường dẫn trong Profile Tab dùng UNC name (User profiles) dạng \\servername\foldername\%username%
+Vd: \\S20\Home\u411
+Ví dụ Thiết lập Mandatory profile:
++ Tạo folder có tên user giống thuộc tính của Roaming
++ Copy tất cả các file của Roaming user vào user muốn thiết lập Mandatory profile
++ Đổi đuôi file NTUSER.DAT thành NTUSER.MAN (hiện hidden file để thấy) Lưu ý: phải đổi đuôi file rồi mới log in, nếu không máy sẽ tự động đồng bộ lại thành .DAT
+
+Roaming profiles cho phép người dùng thay đổi cài đặt trên máy của mình từ bất kì máy nào và khi log off thì những cập nhật ấy vẫn được giữ nguyên => Dùng Roaming khi ta cho phép người dùng bất kì cập nhật các thay đổi trên máy.
+
+Mandatory cũng chính là Roaming nhưng Mandatory chỉ cho phép người quản trị thay đổi cài đặt trên máy. Còn người dùng thay đổi thì sau khi log off, các cài đặt trên máy sẽ trở lại ban đâù => Dùng Mandatory khi chỉ cho phép người quản trị thay đổi cài đặt trên máy.

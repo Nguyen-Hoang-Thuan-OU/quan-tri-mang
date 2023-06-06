@@ -1,0 +1,55 @@
+Tổng hợp:
+
+01. Cài đặt printer server
+https://youtu.be/7o_LaxyKdlc
+
+02. Cấu hình group permission
+https://youtu.be/VS70O8psC-E
+
+03. Nâng cấp máy chủ miền (Domain Controller), kết nối máy vào domain, Share & NTFS Permissions
+https://youtu.be/7AJkphgpkSY
+
+04. Thiết lập Home Folder - Offline files Windows server, user Domains
+https://youtu.be/WtGryyxNjE8
+
+05. Thiết lập roaming profiles, mandatory profile users domain
+https://youtu.be/IrrPFGNAmck
+
+// Cần tạo & share thư mục Profiles thiết lập cho Domain User share permission quyền Full & NTFS permission quyền modify. //
+
+06. Thiết lập hạn ngạch đĩa (Disk Quota), triển khai chính sách nhóm Group Policy Object (GPO) cho domain users - Triển khai cài đặt phần mềm sử dụng GPO (Group Policy Object on Domain Controller Server - Home Folder Quotas)
+https://youtu.be/xF7ggusO0IU
+
+07. Script logon - logoff
+https://youtu.be/oibiGskkUwA
+
+08. Deny App - Cấm sử dụng, thực thi phầm mềm dùng GPO
+https://youtu.be/_RDGhmjV7iU
+
+09. Cài đặt, cấu hình dịch vụ DHCP server
+https://youtu.be/hoqJl1hVBRs
+
+10. Thiết lập cấu hình FTP
+https://youtu.be/kXgeDWci3cE
+
+11. Thiết lập DNS server
+https://youtu.be/-DCJxvC8MTc
+
+12. Thiết lập Web server
+https://youtu.be/lbchUVdeUy8
+
+13. Thiết lập, cấu hình MDaemon Mail Server
+https://youtu.be/JNRLdsKegaM
+
+14. FTP Server, isolate User
+https://youtu.be/sYjhFA8yUs4
+
+15. Thiết lập FTP Site cách ly user Active Directory
+https://youtu.be/ujw2ufYfEK8
+
+16. Cài đặt, cấu hình DFS server (Distributed File System)
+https://youtu.be/yYZe08Z9yEI
+
+17. Cài đặt Email server - site to site
+https://youtu.be/M_EkC0RLVHk
+
